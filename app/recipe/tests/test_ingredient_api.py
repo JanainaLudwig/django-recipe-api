@@ -9,7 +9,6 @@ from utils.test import create_user
 
 from recipe.serializers import IngredientSerializer
 
-
 INGREDIENTS_URL = reverse('recipe:ingredient-list')
 
 
@@ -89,7 +88,10 @@ class PrivateIngredientsApiTests(TestCase):
     def test_get_ingredient_by_id(self):
         """test that ingredient can be retrieved by id"""
         ingredient = Ingredient.objects.create(user=self.user, name='Salt')
-        res = self.client.get(reverse('recipe:ingredient-detail', args=[ingredient.id]))
+        res = self.client.get(
+            reverse('recipe:ingredient-detail',
+                    args=[ingredient.id]),
+        )
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data['id'], ingredient.id)
