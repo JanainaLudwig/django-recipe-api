@@ -27,6 +27,7 @@ class TagViewSet(viewsets.GenericViewSet,
 
 class IngredientViewSet(viewsets.GenericViewSet,
                         mixins.ListModelMixin,
+                        mixins.RetrieveModelMixin,
                         mixins.CreateModelMixin):
     """manage ingredients in the database"""
     authentication_classes = (TokenAuthentication,)
